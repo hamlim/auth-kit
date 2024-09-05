@@ -5,6 +5,7 @@ import {
   generateState,
 } from "arctic";
 import { type NextRequest, NextResponse } from "next/server";
+import { createGitHubClient } from "./internal/github";
 
 declare global {
   namespace NodeJS {
@@ -18,16 +19,9 @@ declare global {
 export default async function signin(
   _req: NextRequest,
 ): Promise<NextResponse<unknown>> {
-  // @TODO: Handle preview login too
-  let redirectURL = "https://auth-kit-iota.vercel.app/api/auth/github/callback";
-  if (process.env.NODE_ENV === "development") {
-    redirectURL = "http://localhost:3000/api/auth/github/callback";
-  }
-
-  let github = new GitHub(
+  let github = createGitHubClient(
     process.env.GITHUB_CLIENT_ID,
     process.env.GITHUB_CLIENT_SECRET,
-    redirectURL,
   );
   let state = generateState();
 
