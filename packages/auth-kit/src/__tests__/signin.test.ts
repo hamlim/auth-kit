@@ -8,7 +8,6 @@ test("signin", async () => {
   let req = new Request("http://localhost:3000/api/auth/signin");
   let res = await signin(req as unknown as NextRequest);
 
-  console.log(res);
   expect(res.status).toBe(302);
   expect(res.headers.get("Location")).toInclude(
     "https://github.com/login/oauth/authorize",
