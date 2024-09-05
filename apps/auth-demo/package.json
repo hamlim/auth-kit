@@ -55,7 +55,8 @@
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.2",
     "zod": "^3.23.8",
-    "auth-kit": "workspace:*"
+    "auth-kit": "workspace:*",
+    "arctic": "2.0.0-next.5"
   },
   "devDependencies": {
     "@types/node": "latest",
