@@ -13,9 +13,25 @@
     "directory": "packages/auth"
   },
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+    "./middleware": {
+      "import": "./dist/middleware.js",
+      "types": "./dist/middleware.d.ts"
+    },
+    "./refresh": {
+      "import": "./dist/refresh.js",
+      "types": "./dist/refresh.d.ts"
+    },
+    "./signin": {
+      "import": "./dist/signin.js",
+      "types": "./dist/signin.d.ts"
+    },
+    "./callback": {
+      "import": "./dist/callback.js",
+      "types": "./dist/callback.d.ts"
+    },
+    "./client": {
+      "import": "./dist/client.js",
+      "types": "./dist/client.d.ts"
     }
   },
   "type": "module",
@@ -25,6 +41,9 @@
     "hohoro": "0.2.0",
     "@types/bun": "latest",
     "typescript": "5.4.5"
+  },
+  "peerDependencies": {
+    "next": "*"
   },
   "scripts": {
     "dev": "node --watch-path=./src dev.mjs",

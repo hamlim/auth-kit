@@ -1,6 +1,3 @@
-import { type NextRequest, NextResponse } from "next/server";
+import middleware from "auth-kit/middleware";
 
-export default async function middleware(req: NextRequest) {
-  const res = NextResponse.next();
-  return res;
-}
+export default middleware;
