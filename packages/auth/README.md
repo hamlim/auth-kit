@@ -1,11 +1,11 @@
-# `pkg-a`
+# `auth-kit`
 
 TODO
 
 ## Getting Started:
 
 ```bash
-bun add pkg-a
+bun add auth-kit
 ```
 
 ...

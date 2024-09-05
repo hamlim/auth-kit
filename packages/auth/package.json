@@ -1,16 +1,16 @@
 {
-  "name": "pkg-a",
+  "name": "auth",
   "version": "0.0.1",
-  "description": "TODO",
-  "homepage": "TODO",
+  "description": "",
+  "homepage": "https://github.com/hamlim/auth-kit",
   "author": {
-    "name": "TODO",
-    "email": "TODO"
+    "name": "Matthew Hamlin",
+    "email": "matthewjameshamlin@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "TODO",
-    "directory": "packages/pkg-a"
+    "url": "https://github.com/hamlim/auth-kit.git",
+    "directory": "packages/auth"
   },
   "exports": {
     ".": {
