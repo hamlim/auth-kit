@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { AuthCookies, type CookieStore } from "./internal/auth-cookies";
-import { parseJwt } from "./internal/parseJwt";
+import { parseJwt } from "./internal/parse-jwt";
 import { refreshTokens } from "./refresh";
 
 export default function createMiddleware({

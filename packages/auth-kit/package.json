@@ -32,6 +32,10 @@
     "./client": {
       "import": "./dist/client.js",
       "types": "./dist/client.d.ts"
+    },
+    "./check-auth": {
+      "import": "./dist/check-auth.js",
+      "types": "./dist/check-auth.d.ts"
     }
   },
   "type": "module",
