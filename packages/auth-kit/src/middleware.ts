@@ -25,7 +25,7 @@ export default function createMiddleware({
     let expiresAt = jwt.exp;
     let now = Math.floor(Date.now() / 1000);
     // expires within 5 minutes
-    let isExpiringSoon = expiresAt - now < 5 * 60 * 1000;
+    let isExpiringSoon = expiresAt - now < 5 * 60;
 
     if (isExpiringSoon) {
       let tokens = await refreshTokens(req);
