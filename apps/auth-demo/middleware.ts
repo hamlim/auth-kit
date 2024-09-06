@@ -1,3 +1,6 @@
-import middleware from "auth-kit/middleware";
+import createMiddleware from "auth-kit/middleware";
+import type { NextRequest } from "next/server";
 
-export default middleware;
+export default createMiddleware({
+  getIsProtectedRoute: async (_req: NextRequest) => false,
+});
