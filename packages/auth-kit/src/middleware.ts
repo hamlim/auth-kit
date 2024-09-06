@@ -3,7 +3,7 @@ import { AuthCookies, type CookieStore } from "./internal/auth-cookies";
 import { parseJwt } from "./internal/parse-jwt";
 import { refreshTokens } from "./refresh";
 
-export default function createMiddleware({
+export function createMiddleware({
   getIsProtectedRoute,
 }: { getIsProtectedRoute: (req: NextRequest) => Promise<boolean> }) {
   return async function middleware(req: NextRequest) {

@@ -16,7 +16,7 @@ declare global {
   }
 }
 
-export default async function signin(
+export async function signin(
   _req: NextRequest,
 ): Promise<NextResponse<unknown>> {
   let github = createGitHubClient(

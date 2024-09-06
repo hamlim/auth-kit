@@ -61,5 +61,5 @@ export async function refresh(req: NextRequest) {
   });
   authCookies.setRefreshToken({ value: tokens.refreshToken });
 
-  return new Response(null, { status: 200 });
+  return new NextResponse(null, { status: 200 });
 }
