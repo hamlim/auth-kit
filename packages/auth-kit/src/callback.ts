@@ -34,6 +34,8 @@ export async function callback(request: NextRequest) {
   try {
     let tokens = await github.validateAuthorizationCode(code);
     let accessToken = tokens.accessToken();
+    // Only GitHub Apps have this value
+    // Wondering if this demo should use GitHub apps vs GitHub OAuth Apps
     // let accessTokenExpiresAt = tokens.accessTokenExpiresAt();
 
     authCookies.setAccessToken({
