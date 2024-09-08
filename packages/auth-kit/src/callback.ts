@@ -23,7 +23,7 @@ export async function callback(request: NextRequest) {
 
   if (code === null || storedState === null || state !== storedState) {
     // 400
-    throw new Error("Invalid request");
+    return new Response("Invalid request", { status: 400 });
   }
 
   let github = createGitHubClient(
@@ -34,24 +34,38 @@ export async function callback(request: NextRequest) {
   try {
     let tokens = await github.validateAuthorizationCode(code);
     let accessToken = tokens.accessToken();
-    let accessTokenExpiresAt = tokens.accessTokenExpiresAt();
+    // let accessTokenExpiresAt = tokens.accessTokenExpiresAt();
 
     authCookies.setAccessToken({
       value: accessToken,
-      expiresAt: accessTokenExpiresAt,
+      expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24),
     });
 
-    return NextResponse.redirect("/");
+    const res = await fetch("https://api.github.com/user", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const user = await res.json();
+
+    console.log(user);
+
+    return NextResponse.redirect(new URL("/", url));
   } catch (e) {
     if (e instanceof OAuth2RequestError) {
       // Invalid authorization code, credentials, or redirect URI
       let code = e.code;
+      console.error(e);
+      return new Response("Invalid request", { status: 400 });
     }
     if (e instanceof ArcticFetchError) {
       // Failed to call `fetch()`
       let cause = e.cause;
-      // ...
+      console.error(e);
+      return new Response("Internal server error", { status: 500 });
     }
     // Parse error
+    console.error(e);
+    return new Response("Internal server error", { status: 500 });
   }
 }

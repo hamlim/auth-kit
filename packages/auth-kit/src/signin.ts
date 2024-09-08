@@ -1,10 +1,6 @@
-import {
-  // You can pick any supported provider from here: https://arcticjs.dev/
-  // We're using GitHub as our social login
-  GitHub,
-  generateState,
-} from "arctic";
-import { type NextRequest, NextResponse } from "next/server";
+import { generateState } from "arctic";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { createGitHubClient } from "./internal/github";
 
 declare global {
@@ -16,9 +12,7 @@ declare global {
   }
 }
 
-export async function signin(
-  _req: NextRequest,
-): Promise<NextResponse<unknown>> {
+export async function signin(_req: NextRequest): Promise<Response> {
   let github = createGitHubClient(
     process.env.GITHUB_CLIENT_ID,
     process.env.GITHUB_CLIENT_SECRET,
@@ -29,19 +23,17 @@ export async function signin(
 
   let url = github.createAuthorizationURL(state, scopes);
 
-  let res = NextResponse.next({
+  let res = new NextResponse(null, {
     status: 302,
     headers: {
       Location: url.toString(),
     },
   });
-  res.cookies.set({
-    name: "state",
-    value: state,
+  res.cookies.set("state", state, {
     path: "/",
     httpOnly: true,
+    maxAge: 600,
     secure: process.env.NODE_ENV === "production",
-    maxAge: 60 * 10, // 10 min
   });
 
   return res;

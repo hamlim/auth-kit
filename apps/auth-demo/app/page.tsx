@@ -1,4 +1,5 @@
 import { Github } from "lucide-react";
+import NextLink from "next/link";
 import { Button } from "~/components/ui/button";
 
 export default function Home() {
@@ -10,9 +11,11 @@ export default function Home() {
           This is a demo application showcasing all the components in a
           traditional OAuth next.js app
         </p>
-        <Button className="px-6 py-2 text-lg">
-          <Github className="mr-2 h-5 w-5" />
-          Sign In with GitHub
+        <Button asChild className="px-6 py-2 text-lg">
+          <NextLink href="/api/auth/github/signin">
+            <Github className="mr-2 h-5 w-5" />
+            Sign In with GitHub
+          </NextLink>
         </Button>
       </div>
     </main>
